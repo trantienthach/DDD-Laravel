@@ -9,5 +9,6 @@ return [
     ],
     'aggregates' => [
         'User' => true,
+        'Booking' => true,
     ]
 ];

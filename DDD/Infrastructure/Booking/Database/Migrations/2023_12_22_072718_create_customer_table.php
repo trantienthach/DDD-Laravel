@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePlayerActionLogIdColumnToPlayerWalletHistoriesTable extends Migration
+class CreateCustomerTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class CreatePlayerActionLogIdColumnToPlayerWalletHistoriesTable extends Migratio
      */
     public function up()
     {
-        Schema::create('player_wallet_histories', function (Blueprint $table) {
+        Schema::create('customers', function (Blueprint $table) {
             $table->id();
-            $table->string('first_name');
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ class CreatePlayerActionLogIdColumnToPlayerWalletHistoriesTable extends Migratio
      */
     public function down()
     {
-        Schema::dropIfExists('player_wallet_histories');
+        Schema::dropIfExists('');
     }
 }

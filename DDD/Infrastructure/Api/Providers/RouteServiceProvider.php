@@ -24,10 +24,11 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapUserApiRoutes()
     {
         Route::group([
-            'prefix' => 'user/api',
+            'prefix' => 'api',
             // 'middleware' => ['ddd.user_api'],
         ], function() {
-            $this->loadRoutesFrom(ddd_path('UI', 'Routes/Api/user.php'));
+            $this->loadRoutesFrom(ddd_path('Presentation', 'Routes/Api/user.php'));
+            $this->loadRoutesFrom(ddd_path('Presentation', 'Routes/Api/booking.php'));
         });
     }
 }

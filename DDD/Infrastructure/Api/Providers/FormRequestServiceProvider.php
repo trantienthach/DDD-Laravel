@@ -3,7 +3,7 @@
 namespace DDD\Infrastructure\Api\Providers;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
-use DDD\UI\FormRequests\Api;
+use DDD\Presentation\FormRequests\Api;
 
 class FormRequestServiceProvider extends ServiceProvider
 {

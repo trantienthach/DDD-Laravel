@@ -2,7 +2,7 @@
 
 namespace DDD\Infrastructure\Api\Providers;
 
-use DDD\UI\FormRequests\Base\BaseApiFormRequest;
+use DDD\Presentation\FormRequests\Base\BaseApiFormRequest;
 use Illuminate\Support\ServiceProvider;
 
 class ApiServiceProvider extends ServiceProvider

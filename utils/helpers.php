@@ -14,10 +14,12 @@ if (! function_exists('ddd_path')) {
             'I' => 'Infrastructure',
             'D' => 'Domain',
             'U' => 'UI',
+            'P' => 'Presentation',
             'Application' => 'Application',
             'Infrastructure' => 'Infrastructure',
             'Domain' => 'Domain',
             'UI' => 'UI',
+            'Presentation' => 'Presentation',
         ];
 
         $layer = $layerMappers[$layer];
