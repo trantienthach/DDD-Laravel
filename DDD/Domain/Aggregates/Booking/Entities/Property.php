@@ -4,9 +4,9 @@ namespace DDD\Domain\Aggregates\Booking\Entities;
 
 use DDD\Domain\Aggregates\Core\Entities\BaseEntity;
 
-class Customer extends BaseEntity
+class Property extends BaseEntity
 {
-    protected $table = 'customers';
+    protected $table = 'properties';
 
     protected $fillable = [
         'name',
