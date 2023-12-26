@@ -9,7 +9,8 @@ class Customer extends BaseEntity
     protected $table = 'customers';
 
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
         'email',
         'phone',
         'address'

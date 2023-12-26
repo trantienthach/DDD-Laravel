@@ -25,7 +25,7 @@ abstract class BaseApiFormRequest extends Request
 
     protected $afterValidateMergeData = [];
 
-    public function errorResponse(): ?JsonResponse
+    public function errorResponse()
     {
         return response()->json([
             'message' => $this->errorMessage,

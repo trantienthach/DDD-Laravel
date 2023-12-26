@@ -2,6 +2,7 @@
 
 namespace DDD\Infrastructure\Core\Providers;
 
+use DDD\Infrastructure\Core\Middlewares\Auth;
 use DDD\Infrastructure\Core\Middlewares\PlatformMiddleware;
 use DDD\Infrastructure\Core\Middlewares\XssPreventionMiddleware;
 use Illuminate\Support\ServiceProvider;
@@ -44,5 +45,6 @@ class CoreServiceProvider extends ServiceProvider
 
         $router->aliasMiddleware('ddd.core.xss_prevention', XssPreventionMiddleware::class);
         $router->aliasMiddleware('ddd.core.platform', PlatformMiddleware::class);
+        $router->aliasMiddleware('ddd.core.auth', Auth::class);
     }
 }

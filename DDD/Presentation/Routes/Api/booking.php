@@ -1,27 +1,18 @@
 <?php
 
-use DDD\Presentation\Controllers\Api\User\AuthController;
+use DDD\Presentation\Controllers\Api\Booking\BookingController;
+use DDD\Presentation\Controllers\Api\Booking\PropertyController;
+
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('v1')->name('booking.')->group(function() {
-    Route::get('/booking', function() {
-        return 'PONG';
-    });
+Route::prefix('booking')->name('booking.')->group(function () {
+    Route::post('/add', [PropertyController::class, 'store'])->name('add');
 
-    Route::get('/booking-view', function(){
-        return view('home');
-    })->name('home');
+    Route::get('/booking-view', [PropertyController::class, 'index'])->name('home');
 
-    Route::get('/properties', function(){
-        return view('properties');
-    })->name('properties');
+    Route::get('/properties', [PropertyController::class, 'index'])->name('properties');
 
-    Route::get('/property-details', function(){
-        return view('/property-details');
-    })->name('property-details');
-
-    Route::get('/contact', function(){
-        return view('/contact');
-    })->name('contact');
-    Route::get('/signin', [AuthController::class, 'signin']);
+    Route::get('/booking/{id}', [PropertyController::class, 'show'])->name('show');
+    Route::post('/booking/{id}', [BookingController::class, 'store'])->name('booking');
+    // Route::get('/signin', [AuthController::class, 'signin']);
 });

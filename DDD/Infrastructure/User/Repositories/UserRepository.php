@@ -12,4 +12,9 @@ class UserRepository extends CoreRepository implements UserRepositoryInterface
     {
         return User::class;
     }
+
+    public function getUser($username, $password)
+    {
+        return $this->where('username', $username)->where('password', $password)->first();
+    }
 }

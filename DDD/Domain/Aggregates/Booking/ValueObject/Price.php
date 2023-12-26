@@ -15,7 +15,7 @@ class Price
 
     public function getAmount()
     {
-        return $this->amount;
+        return number_format($this->amount, 0, ',', '.') . ' ' . $this->currency;
     }
 
     public function getCurrency()

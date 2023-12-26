@@ -6,4 +6,5 @@ use DDD\Domain\Aggregates\Core\Repositories\CoreRepositoryInterface;
 
 interface PropertyRepositoryInterface extends CoreRepositoryInterface
 {
+    public function getListWithOutBooking();
 }

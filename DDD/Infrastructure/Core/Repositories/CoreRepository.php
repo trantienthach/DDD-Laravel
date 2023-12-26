@@ -23,7 +23,7 @@ use Illuminate\Support\Str;
 
 abstract class CoreRepository implements CoreRepositoryInterface
 {
-/**
+    /**
      * @var Model
      */
     protected $model;
@@ -112,7 +112,7 @@ abstract class CoreRepository implements CoreRepositoryInterface
     {
         $model = app($this->model());
 
-        if (! $model instanceof Model) {
+        if (!$model instanceof Model) {
             throw new RepositoryException("Class {$this->model()} must be an instance of Illuminate\\Database\\Eloquent\\Model");
         }
 
@@ -207,7 +207,7 @@ abstract class CoreRepository implements CoreRepositoryInterface
         $limit = $this->getPaginateLimit($limit);
 
 
-        if(! in_array($paginationType, ['paginate', 'simplePaginate', 'cursorPaginate'])) {
+        if (!in_array($paginationType, ['paginate', 'simplePaginate', 'cursorPaginate'])) {
             $paginationType = 'paginate';
         }
 
@@ -320,11 +320,11 @@ abstract class CoreRepository implements CoreRepositoryInterface
      */
     public function whereColumnsLike($value = null, array $columns = [], $operation = 'or')
     {
-        if (! $value || empty($columns)) {
+        if (!$value || empty($columns)) {
             return $this;
         }
 
-        if (! Str::contains($value, '%')) {
+        if (!Str::contains($value, '%')) {
             $value = "%$value%";
         }
 
@@ -555,7 +555,7 @@ abstract class CoreRepository implements CoreRepositoryInterface
 
         $model = $id;
 
-        if (! $id instanceof Model) {
+        if (!$id instanceof Model) {
             $model = $this->model->find($id, $columns);
         }
 
@@ -576,12 +576,12 @@ abstract class CoreRepository implements CoreRepositoryInterface
 
         $model = $id;
 
-        if (! $id instanceof Model) {
+        if (!$id instanceof Model) {
             $model = $this->model->find($id, $columns);
         }
 
-        if (! $model) {
-            throw new EntityNotFoundException('Invalid '.class_basename($this->model()));
+        if (!$model) {
+            throw new EntityNotFoundException('Invalid ' . class_basename($this->model()));
         }
 
         $this->resetRepository();
@@ -1043,13 +1043,13 @@ abstract class CoreRepository implements CoreRepositoryInterface
      */
     protected function applyScope()
     {
-        if (! empty($this->scopeQueries)) {
+        if (!empty($this->scopeQueries)) {
             foreach ($this->scopeQueries as $scope) {
                 $this->applyScopeQueryClosure($scope);
             }
         }
 
-        if (! empty($this->queryingColumnsLike)) {
+        if (!empty($this->queryingColumnsLike)) {
             foreach ($this->queryingColumnsLike as $querying) {
                 $this->applyWhereColumnsLike(data_get($querying, 'value'), data_get($querying, 'columns'), data_get($querying, 'operation'));
             }
@@ -1178,7 +1178,7 @@ abstract class CoreRepository implements CoreRepositoryInterface
                         array_merge($this->withCmsCollectionOptions, ['limit' => $result->perPage()])
                     );
 
-                if($result instanceof Paginator){
+                if ($result instanceof Paginator) {
                     return (new Paginator(
                         $collections,
                         $result->perPage(),
@@ -1239,7 +1239,7 @@ abstract class CoreRepository implements CoreRepositoryInterface
         $this->queryingColumnsLike = [];
         $this->sorts = [];
 
-        if($resetCmsState) {
+        if ($resetCmsState) {
             $this->withCmsCollectionFilter = [];
             $this->withCmsCollectionFields = [];
             $this->withCmsCollectionOptions = [];
@@ -1284,7 +1284,7 @@ abstract class CoreRepository implements CoreRepositoryInterface
 
     protected function applySorting()
     {
-        if(empty($this->sorts) && !$this->hasRequestSorting()) {
+        if (empty($this->sorts) && !$this->hasRequestSorting()) {
             $this->sorts = $this->defaultSorts;
         }
 
@@ -1294,7 +1294,7 @@ abstract class CoreRepository implements CoreRepositoryInterface
             $this->sorts[] = ['order_by' => $guessedSorting['order_by'], 'sort_by' => $guessedSorting['sort_by']];
         }
 
-        if ($this->appendIdSort && ! in_array($this->getModelKeyName(), Arr::pluck($this->sorts, 'order_by'))) {
+        if ($this->appendIdSort && !in_array($this->getModelKeyName(), Arr::pluck($this->sorts, 'order_by'))) {
             $this->sorts[] = ['order_by' => $this->getModelKeyName(), 'sort_by' => 'desc'];
         }
 
@@ -1331,7 +1331,7 @@ abstract class CoreRepository implements CoreRepositoryInterface
                         "$relationTable.$relationTableKeyName",
                         "{$relationQuery->getChild()->getTable()}.{$relationQuery->getForeignKeyName()}"
                     ),
-                    $sortBy
+                $sortBy
             );
 
             return;
@@ -1380,7 +1380,7 @@ abstract class CoreRepository implements CoreRepositoryInterface
 
     public function throwEntityNotFoundException()
     {
-        throw new EntityNotFoundException('Invalid '.class_basename($this->model()));
+        throw new EntityNotFoundException('Invalid ' . class_basename($this->model()));
     }
 
     /**
@@ -1409,5 +1409,14 @@ abstract class CoreRepository implements CoreRepositoryInterface
         $this->applyScope();
 
         return call_user_func_array([$this->model, $method], $arguments);
+    }
+
+    public function store($request, $array = [])
+    {
+        $request = $request->all();
+        $request = array_merge($request, $array);
+        $this->fill($request);
+        $this->save();
+        return $this->model;
     }
 }

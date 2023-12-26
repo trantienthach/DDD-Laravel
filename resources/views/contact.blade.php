@@ -4,8 +4,8 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
-          <span class="breadcrumb"><a href="#">Home</a>  /  Contact Us</span>
-          <h3>Contact Us</h3>
+          <span class="breadcrumb"><a href="#">Home</a>  /  Booking</span>
+          <h3>Booking</h3>
         </div>
       </div>
     </div>
@@ -13,22 +13,25 @@
 
   <div class="contact-page section">
     <div class="container">
-      <div class="row">
-        <div class="col-lg-6">
-          <div class="section-heading">
-            <h6>| Contact Us</h6>
-            <h2>Get In Touch With Our Agents</h2>
+        <div class="row">
+            <div class="col-lg-6">
+          <div class="section-heading" style="width: 100%">
+            <h3>{{ $property->name }}</h3>
+            <h5 style="color: #f35525">{{ $property->price }}</h5>
+        </div>
+          <p>{{ $property->description }}</p>
+          <div class="mb-3">
+            <img src="{{ url($property->image) }}" height="354.13px" width="636px" alt="" >
           </div>
-          <p>When you really need to download free CSS templates, please remember our website TemplateMo. Also, tell your friends about our website. Thank you for visiting. There is a variety of Bootstrap HTML CSS templates on our website. If you need more information, please contact us.</p>
           <div class="row">
-            <div class="col-lg-12">
-              <div class="item phone">
+            <div class="col-lg-6">
+              <div class="item phone" style="min-width: 300px">
                 <img src="{{ asset('assets/images/phone-icon.png') }}" alt="" style="max-width: 52px;">
                 <h6>010-020-0340<br><span>Phone Number</span></h6>
               </div>
             </div>
-            <div class="col-lg-12">
-              <div class="item email">
+            <div class="col-lg-6">
+              <div class="item email" style="min-width: 300px">
                 <img src="{{ asset('assets/images/email-icon.png') }}" alt="" style="max-width: 52px;">
                 <h6>info@villa.co<br><span>Business Email</span></h6>
               </div>
@@ -36,35 +39,54 @@
           </div>
         </div>
         <div class="col-lg-6">
-          <form id="contact-form" action="" method="post">
+            <form id="contact-form" action="{{ route('booking.booking', $property->id) }}" enctype="multipart/form-data" method="POST">
+                @csrf
             <div class="row">
-              <div class="col-lg-12">
+              <div class="col-lg-6">
                 <fieldset>
-                  <label for="name">Full Name</label>
-                  <input type="name" name="name" id="name" placeholder="Your Name..." autocomplete="on" required>
+                  <label for="first_name">First name</label>
+                  <input type="text" name="first_name" id="first_name" placeholder="First Name..." autocomplete="on" required>
                 </fieldset>
-              </div>
+            </div>
+            <div class="col-lg-6">
+                <fieldset>
+                    <label for="last_name">Last name</label>
+                    <input type="text" name="last_name" id="last_name" placeholder="Last Name..." autocomplete="on" required>
+                </fieldset>
+            </div>
               <div class="col-lg-12">
                 <fieldset>
                   <label for="email">Email Address</label>
-                  <input type="text" name="email" id="email" pattern="[^ @]*@[^ @]*" placeholder="Your E-mail..." required="">
+                  <input type="text" name="email" id="email" pattern="[^ @]*@[^ @]*" placeholder="Your E-mail..." required>
                 </fieldset>
               </div>
               <div class="col-lg-12">
                 <fieldset>
-                  <label for="subject">Subject</label>
-                  <input type="subject" name="subject" id="subject" placeholder="Subject..." autocomplete="on" >
+                  <label for="phone">Phone</label>
+                  <input type="text" name="phone" id="phone" placeholder="Phone..." autocomplete="on"required >
+                </fieldset>
+              </div>
+              <div class="col-lg-6">
+                <fieldset>
+                  <label for="check_in_date">Check in date</label>
+                  <input type="date" name="check_in_date" id="check_in_date" required>
+                </fieldset>
+              </div>
+              <div class="col-lg-6">
+                <fieldset>
+                  <label for="check_out_date">Check out date</label>
+                  <input type="date" name="check_out_date" id="check_out_date" required>
                 </fieldset>
               </div>
               <div class="col-lg-12">
                 <fieldset>
-                  <label for="message">Message</label>
-                  <textarea name="message" id="message" placeholder="Your Message"></textarea>
+                  <label for="address">Address</label>
+                  <input type="text" name="address" id="address" placeholder="Address..." autocomplete="on" required>
                 </fieldset>
               </div>
               <div class="col-lg-12">
                 <fieldset>
-                  <button type="submit" id="form-submit" class="orange-button">Send Message</button>
+                  <button type="submit" id="form-submit" class="orange-button">Booking</button>
                 </fieldset>
               </div>
             </div>

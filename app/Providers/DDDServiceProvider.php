@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use DDD\Infrastructure\Api\Providers\ApiServiceProvider;
+use DDD\Infrastructure\Booking\Providers\BookingServiceProvider;
 use DDD\Infrastructure\Core\Providers\CoreServiceProvider;
 use DDD\Infrastructure\Kafka\Providers\KafkaServiceProvider;
 use DDD\Infrastructure\User\Providers\UserServiceProvider;
@@ -43,6 +44,7 @@ class DDDServiceProvider extends ServiceProvider
         $this->app->register(KafkaServiceProvider::class);
         $this->app->register(CoreServiceProvider::class);
         $this->app->register(UserServiceProvider::class);
+        $this->app->register(BookingServiceProvider::class);
         $this->app->register(ApiServiceProvider::class);
     }
 

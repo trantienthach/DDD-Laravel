@@ -6,5 +6,5 @@ use DDD\Domain\Aggregates\Core\Repositories\CoreRepositoryInterface;
 
 interface UserRepositoryInterface extends CoreRepositoryInterface
 {
-
+    public function getUser($username, $password);
 }
